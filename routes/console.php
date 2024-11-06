@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
+use App\Console\Commands\InspireCommand;
+use Illuminate\Support\Facades\Schedule;
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote')->hourly();
+Schedule::command(InspireCommand::class)
+    ->everyMinute()
+    ->thenPingIf(config('services.inspire.ping_url') !== null, config('services.inspire.ping_url'));

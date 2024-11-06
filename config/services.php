@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'inspire' => [
+        'ping_url' => env('INSPIRE_PING_URL'),
+    ]
+
 ];
